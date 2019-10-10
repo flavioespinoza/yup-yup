@@ -1,0 +1,33 @@
+{
+  "name": "@flavs/yup-yup",
+  "version": "1.0.0",
+  "description": "Additional validation methods for the Yup validation npm module",
+  "main": "index.js",
+  "typings": "typings/index.d.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "tus",
+    "resumable",
+    "upload",
+    "availity"
+  ],
+  "author": "Flavio Espinoza <flavio.espinoza@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "moment": "^2.24.0",
+    "yup": "^0.27.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "moment": "^2.24.0",
+    "yup": "^0.27.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "merge-options-es5": "^1.0.0"
+  }
+}
