@@ -9,24 +9,49 @@
 ```bash
 yarn add @flavs/yup-yup
 ```
+## Methods
 
-## Usage
+#### phone
+phone number input validator
+`Yup.string.phone('phone_number')`
+
 ```js
 import "@flavs/yup-yup";
 import * as Yup from "yup";
 
-const validators = {
-  firstName: Yup.string()
-    .required("Required"),
-  lastName: Yup.string()
-    .required("Required"),
+// valid: accepted inputs
+console.log(Yup.string.phone('(444) 444-4444')) // true
+console.log(Yup.string.phone('+1 (444) 444-4444')) // true
+console.log(Yup.string.phone('444-444-4444')) // true
+console.log(Yup.string.phone('+1 444-444-4444')) // true
+console.log(Yup.string.phone('444.444.4444')) // true
+console.log(Yup.string.phone('(444) 444 4444')) // true
+console.log(Yup.string.phone('4444444444')); // true
+console.log(Yup.string.phone('444 444 4444')) // true
+console.log(Yup.string.phone('+14444444444')) // true
+
+// invalid: too many numbers or has a letter or non-numeric character
+console.log(Yup.string.phone('44444444445')) // false
+console.log(Yup.string.phone('+144444444445')) // false
+console.log(Yup.string.phone('S444444445')) // false
+```
+
+### Usage
+```js
+import "@flavs/yup-yup";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+
+  // default Yup validator
   email: Yup.string()
     .email()
     .required("Required"),
+
+  // new phone validator
   mobilePhone: Yup.string()
     .phone()
     .required("Required")
-};
 
-const validationSchema = Yup.object().shape(validators);
+});
 ```
