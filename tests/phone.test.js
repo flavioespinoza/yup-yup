@@ -56,8 +56,6 @@ describe('phone', () => {
 
   test('should display custom error message', async () => {
     const schema = yup.number().phone('Custom Error Message');
-    await expect(schema.validate('123321')).rejects.toThrow(
-      'Custom Error Message'
-    );
+    await expect(schema.validate('123321')).rejects.toThrow('Custom Error Message');
   });
 });

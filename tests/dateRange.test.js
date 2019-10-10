@@ -1,5 +1,5 @@
-import '../moment'
 import * as yup from 'yup';
+import '../moment';
 
 describe('DateRange', () => {
   test('start comes before end', async () => {
@@ -9,7 +9,7 @@ describe('DateRange', () => {
       schema.validate({
         startDate: '12/14/2012',
         endDate: '12/13/2012',
-      })
+      }),
     ).rejects.toThrow('Start date must come before end date.');
   });
 

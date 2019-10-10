@@ -29,5 +29,16 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "merge-options-es5": "^1.0.0"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flavioespinoza/yup-yup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/flavioespinoza/yup-yup/issues"
+  },
+  "homepage": "https://github.com/flavioespinoza/yup-yup#readme"
 }

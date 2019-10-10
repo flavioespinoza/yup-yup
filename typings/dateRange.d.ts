@@ -1,4 +1,4 @@
-import * as yup from 'yup';
+import 'yup';
 
 declare module 'yup' {
   type DateRangeObject = {
@@ -13,26 +13,20 @@ declare module 'yup' {
   }
 
   type DistanceValue = {
-    value: number,
+    value: number;
     units?: string;
-    errorMessage?: string
-  }
+    errorMessage?: string;
+  };
 
   type DistanceOpts = {
     min?: DistanceValue;
-    max?: DistanceValue
-  }
+    max?: DistanceValue;
+  };
 
-  interface DateRangeSchema<
-    T extends DateRangeObject | null | undefined = DateRangeObject
-  > extends MixedSchema<T> {
+  interface DateRangeSchema<T extends DateRangeObject | null | undefined = DateRangeObject> extends MixedSchema<T> {
     min(date: string, errorMessage?: string): DateRangeSchema<T>;
     max(date: string, errorMessage?: string): DateRangeSchema<T>;
-    between(
-      minDate: string,
-      maxDate: string,
-      errorMessage?: string
-    ): DateRangeSchema<T>;
+    between(minDate: string, maxDate: string, errorMessage?: string): DateRangeSchema<T>;
     isRequired(required?: boolean, errorMessage?: string): DateRangeSchema<T>;
     distance(distanceOpts: DistanceOpts);
   }

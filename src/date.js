@@ -1,5 +1,5 @@
-import * as yup from 'yup';
 import moment from 'moment';
+import * as yup from 'yup';
 
 const defaultOpts = {
   format: 'MM/DD/YYYY',
@@ -48,8 +48,7 @@ export default class DateSchema extends yup.mixed {
     const minDate = this.getValidDate(min);
 
     return this.test({
-      message:
-        message || `Date must come after ${minDate.format(this.format)}.`,
+      message: message || `Date must come after ${minDate.format(this.format)}.`,
       name: 'min',
       exclusive: true,
       params: { min },
@@ -66,8 +65,7 @@ export default class DateSchema extends yup.mixed {
     const maxDate = this.getValidDate(max);
 
     return this.test({
-      message:
-        message || `Date must come before ${maxDate.format(this.format)}.`,
+      message: message || `Date must come before ${maxDate.format(this.format)}.`,
       name: 'max',
       exclusive: true,
       params: { max },
@@ -105,11 +103,7 @@ export default class DateSchema extends yup.mixed {
       name: 'between',
       exclusive: true, // Validation errors don't stack
       // NOTE: Intentional use of single quotes - yup will handle the string interpolation
-      message:
-        msg ||
-        `Date must be between ${minDate.format(
-          this.format
-        )} and ${maxDate.format(this.format)}.`,
+      message: msg || `Date must be between ${minDate.format(this.format)} and ${maxDate.format(this.format)}.`,
       test(value) {
         if (!min || !max || !minDate.isValid() || !maxDate.isValid()) {
           return true;

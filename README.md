@@ -1,8 +1,8 @@
 # yup-yup
 
-> Additional validation methods for the [Yup](https://github.com/jquense/yup) validation npm module 
+> Additional validation methods for the [Yup](https://github.com/jquense/yup) validation npm module
 
-[![Version](https://img.shields.io/npm/v/@availity/yup.svg?style=for-the-badge)](https://www.npmjs.com/package/@flavsy/yup)
+[![Version](https://img.shields.io/npm/v/@flavs/yup-yup.svg?style=for-the-badge)](https://www.npmjs.com/package/@flavsy/yup-yup)
 
 ## Install
 
@@ -10,16 +10,23 @@
 yarn add @flavs/yup-yup
 ```
 
+## Usage
+```js
+import "@flavs/yup-yup";
+import * as Yup from "yup";
 
+const validators = {
+  firstName: Yup.string()
+    .required("Required"),
+  lastName: Yup.string()
+    .required("Required"),
+  email: Yup.string()
+    .email()
+    .required("Required"),
+  mobilePhone: Yup.string()
+    .phone()
+    .required("Required")
+};
 
-```bash
-
-git init
-git add .
-git commit -m "first commit"
-git remote add origin https://github.com/flavioespinoza/yup-yup.git
-git push -u origin master
-
+const validationSchema = Yup.object().shape(validators);
 ```
-
-

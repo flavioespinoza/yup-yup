@@ -1,5 +1,5 @@
-import '../moment'
 import * as yup from 'yup';
+import '../moment';
 
 const INVALID = 'Date is invalid.';
 
@@ -29,12 +29,8 @@ describe('Date', () => {
   test('valid', async () => {
     await expect(validate('12/12/2012')).resolves.toBeTruthy();
     await expect(validate('12-12-2012')).resolves.toBeTruthy();
-    await expect(
-      validate('2012/12/12', { format: 'YYYY/MM/DD' })
-    ).resolves.toBeTruthy();
-    await expect(
-      validate('20121212', { format: 'YYYYMMDD' })
-    ).resolves.toBeTruthy();
+    await expect(validate('2012/12/12', { format: 'YYYY/MM/DD' })).resolves.toBeTruthy();
+    await expect(validate('20121212', { format: 'YYYYMMDD' })).resolves.toBeTruthy();
   });
 
   test('invalid', async () => {
@@ -48,33 +44,33 @@ describe('Date', () => {
     await expect(
       validate('12/12/2012', {
         min: '12/11/2012',
-      })
+      }),
     ).resolves.toBeTruthy();
 
     await expect(
       validate('12/12/2012', {
         min: '12/12/2012',
-      })
+      }),
     ).resolves.toBeTruthy();
 
     await expect(
       validate('12/10/2012', {
         min: '12/11/2012',
-      })
+      }),
     ).rejects.toThrow(`Date must come after 12/11/2012.`);
 
     await expect(
       validate('2012/12/12', {
         min: '2012/12/11',
         format: 'YYYY/MM/DD',
-      })
+      }),
     ).resolves.toBeTruthy();
 
     await expect(
       validate('2012/12/10', {
         min: '2012/12/11',
         format: 'YYYY/MM/DD',
-      })
+      }),
     ).rejects.toThrow();
   });
 
@@ -82,33 +78,33 @@ describe('Date', () => {
     await expect(
       validate('12/11/2012', {
         max: '12/12/2012',
-      })
+      }),
     ).resolves.toBeTruthy();
 
     await expect(
       validate('12/12/2012', {
         max: '12/12/2012',
-      })
+      }),
     ).resolves.toBeTruthy();
 
     await expect(
       validate('12/12/2012', {
         max: '12/11/2012',
-      })
+      }),
     ).rejects.toThrow(`Date must come before 12/11/2012.`);
 
     await expect(
       validate('2012/12/11', {
         max: '2012/12/11',
         format: 'YYYY/MM/DD',
-      })
+      }),
     ).resolves.toBeTruthy();
 
     await expect(
       validate('2012/12/12', {
         max: '2012/12/11',
         format: 'YYYY/MM/DD',
-      })
+      }),
     ).rejects.toThrow();
   });
 
@@ -117,14 +113,14 @@ describe('Date', () => {
       validate('12/11/2012', {
         max: '12/12/2012',
         min: '12/10/2012',
-      })
+      }),
     ).resolves.toBeTruthy();
 
     await expect(
       validate('12/12/2012', {
         min: '12/12/2012',
         max: '12/13/2012',
-      })
+      }),
     ).rejects.toThrow(`Date must be between 12/12/2012 and 12/13/2012.`);
 
     await expect(
@@ -132,7 +128,7 @@ describe('Date', () => {
         max: '2012/12/13',
         min: '2012/12/10',
         format: 'YYYY/MM/DD',
-      })
+      }),
     ).resolves.toBeTruthy();
 
     await expect(
@@ -140,7 +136,7 @@ describe('Date', () => {
         min: '2012/12/11',
         max: '2012/12/12',
         format: 'YYYY/MM/DD',
-      })
+      }),
     ).rejects.toThrow();
   });
 });

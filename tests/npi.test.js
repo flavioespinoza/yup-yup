@@ -41,7 +41,7 @@ describe('npi', () => {
     const schema = yup.number().npi();
     const valid = await schema.isValid('i2eh56789o');
     expect(valid).toBe(false);
-    });
+  });
 
   test('should be invalid if NPI is not 10 digits in length', async () => {
     const schema = yup.number().npi();
@@ -73,8 +73,6 @@ describe('npi', () => {
   test('should render custom error message', async () => {
     const schema = yup.number().npi('Test Error Message');
 
-    await expect(schema.validate('123')).rejects.toThrow(
-      'Test Error Message'
-    );
+    await expect(schema.validate('123')).rejects.toThrow('Test Error Message');
   });
 });

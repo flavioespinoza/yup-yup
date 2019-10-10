@@ -1,7 +1,7 @@
-import moment from 'moment';
 import get from 'lodash.get';
-import * as yup from 'yup';
 import merge from 'merge-options-es5';
+import moment from 'moment';
+import * as yup from 'yup';
 
 const defaultOptions = {
   startKey: 'startDate',
@@ -64,16 +64,8 @@ export default class DateRangeSchema extends yup.mixed {
   }
 
   distance({
-    min: {
-      value: minValue,
-      units: minUnits = 'day',
-      errorMessage: minErrorMessage,
-    } = {},
-    max: {
-      value: maxValue,
-      units: maxUnits = 'day',
-      errorMessage: maxErrorMessage,
-    } = {},
+    min: { value: minValue, units: minUnits = 'day', errorMessage: minErrorMessage } = {},
+    max: { value: maxValue, units: maxUnits = 'day', errorMessage: maxErrorMessage } = {},
   } = defaultValue) {
     return this.test({
       name: 'distance',
@@ -85,14 +77,12 @@ export default class DateRangeSchema extends yup.mixed {
           if (endDate.isAfter(startDate.add(maxValue, maxUnits), 'day')) {
             return new yup.ValidationError(
               maxErrorMessage ||
-                `The end date must be within ${maxValue} ${maxUnits}${
-                  maxValue > 1 ? 's' : ''
-                } of the start date`,
+                `The end date must be within ${maxValue} ${maxUnits}${maxValue > 1 ? 's' : ''} of the start date`,
               {
                 startDate,
                 endDate,
               },
-              this.path
+              this.path,
             );
           }
         }
@@ -100,11 +90,9 @@ export default class DateRangeSchema extends yup.mixed {
           if (endDate.isBefore(startDate.add(minValue, minUnits), 'day')) {
             return new yup.ValidationError(
               minErrorMessage ||
-                `The end date must be greater than ${minValue} ${minUnits}${
-                  minValue > 1 ? 's' : ''
-                } of the start date`,
+                `The end date must be greater than ${minValue} ${minUnits}${minValue > 1 ? 's' : ''} of the start date`,
               { startDate, endDate },
-              this.path
+              this.path,
             );
           }
         }
@@ -119,8 +107,7 @@ export default class DateRangeSchema extends yup.mixed {
 
     const minDate = this.getValidDate(min);
     return this.test({
-      message:
-        message || `Date Range must start after ${minDate.format(format)}`,
+      message: message || `Date Range must start after ${minDate.format(format)}`,
       name: 'min',
       exclusive: true,
       params: { min },
@@ -139,8 +126,7 @@ export default class DateRangeSchema extends yup.mixed {
     const maxDate = this.getValidDate(max);
 
     return this.test({
-      message:
-        message || `Date Range must end before ${maxDate.format(format)}`,
+      message: message || `Date Range must end before ${maxDate.format(format)}`,
       name: 'min',
       exclusive: true,
       params: { max },
@@ -158,21 +144,14 @@ export default class DateRangeSchema extends yup.mixed {
     const maxDate = this.getValidDate(max);
 
     return this.test({
-      message:
-        message ||
-        `Date Range must be between ${minDate.format(
-          format
-        )} and ${maxDate.format(format)}`,
+      message: message || `Date Range must be between ${minDate.format(format)} and ${maxDate.format(format)}`,
       name: 'min',
       exclusive: true,
       params: { min, max },
       test({ startDate, endDate } = defaultValue) {
         if (!startDate || !endDate || !min || !max) return true;
         return (
-          maxDate.isValid() &&
-          minDate.isValid() &&
-          maxDate.isSameOrAfter(endDate) &&
-          minDate.isSameOrBefore(startDate)
+          maxDate.isValid() && minDate.isValid() && maxDate.isSameOrAfter(endDate) && minDate.isSameOrBefore(startDate)
         );
       },
     });
@@ -208,9 +187,7 @@ export default class DateRangeSchema extends yup.mixed {
           errors.push('End Date is invalid.');
         }
 
-        return errors.length > 0
-          ? new yup.ValidationError(errors, { startDate, endDate }, this.path)
-          : true;
+        return errors.length > 0 ? new yup.ValidationError(errors, { startDate, endDate }, this.path) : true;
       },
     });
   }
