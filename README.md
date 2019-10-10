@@ -9,6 +9,27 @@
 ```bash
 yarn add @flavs/yup-yup
 ```
+
+### Usage
+```js
+import "@flavs/yup-yup";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+
+  // default Yup validator
+  email: Yup.string()
+    .email()
+    .required("Required"),
+
+  // new phone validator
+  mobilePhone: Yup.string()
+    .phone()
+    .required("Required")
+
+});
+```
+
 ## Methods
 
 #### phone
@@ -34,24 +55,4 @@ console.log(Yup.string.phone('+14444444444')) // true
 console.log(Yup.string.phone('44444444445')) // false
 console.log(Yup.string.phone('+144444444445')) // false
 console.log(Yup.string.phone('S444444445')) // false
-```
-
-### Usage
-```js
-import "@flavs/yup-yup";
-import * as Yup from "yup";
-
-const validationSchema = Yup.object().shape({
-
-  // default Yup validator
-  email: Yup.string()
-    .email()
-    .required("Required"),
-
-  // new phone validator
-  mobilePhone: Yup.string()
-    .phone()
-    .required("Required")
-
-});
 ```
