@@ -1,6 +1,6 @@
 {
   "name": "@flavs/yup-yup",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "Additional validation methods for the Yup validation npm module",
   "main": "index.js",
   "typings": "typings/index.d.ts",
