@@ -20,16 +20,16 @@
  * console.log(phone('S444444445')) // false
  * */
 
-const NANP_REGEXP = /^(\+?1[.\-\s]?)?\(?[2-9]\d{2}[).\-\s]?\s?[2-9]\d{2}[.\-\s]?\d{4}$/;
+// const NANP_REGEXP = /^(\+?1[.\-\s]?)?\(?[2-9]\d{2}[).\-\s]?\s?[2-9]\d{2}[.\-\s]?\d{4}$/;
+const NANP_REGEXP = /^([0-9a-fA-F]){8}$/;
 
 function phone(msg) {
   return this.test({
     name: 'phone',
     exclusive: true,
-    message: msg || 'This field is invalid',
+    message: msg || 'must be a valid phone number',
     test(value) {
       if (!value) return true;
-
       return NANP_REGEXP.test(value);
     },
   });
