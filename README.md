@@ -24,35 +24,8 @@ const validationSchema = Yup.object().shape({
 
   // new phone validator
   mobilePhone: Yup.string()
-    .phone()
+    .phone('phone number is not valid')
     .required("Required")
 
 });
-```
-
-## Methods
-
-#### phone
-phone number input validator
-`Yup.string.phone('phone_number')`
-
-```js
-import "@flavs/yup-yup";
-import * as Yup from "yup";
-
-// valid: accepted inputs
-console.log(Yup.string.phone('(444) 444-4444')) // true
-console.log(Yup.string.phone('+1 (444) 444-4444')) // true
-console.log(Yup.string.phone('444-444-4444')) // true
-console.log(Yup.string.phone('+1 444-444-4444')) // true
-console.log(Yup.string.phone('444.444.4444')) // true
-console.log(Yup.string.phone('(444) 444 4444')) // true
-console.log(Yup.string.phone('4444444444')); // true
-console.log(Yup.string.phone('444 444 4444')) // true
-console.log(Yup.string.phone('+14444444444')) // true
-
-// invalid: too many numbers or has a letter or non-numeric character
-console.log(Yup.string.phone('44444444445')) // false
-console.log(Yup.string.phone('+144444444445')) // false
-console.log(Yup.string.phone('S444444445')) // false
 ```
